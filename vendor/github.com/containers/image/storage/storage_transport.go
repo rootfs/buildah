@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -121,10 +122,13 @@ func (s storageTransport) ParseStoreReference(store storage.Store, ref string) (
 		refname = verboseName(name)
 	}
 	if refname == "" {
+		fmt.Println("Dan1", storeSpec+"@"+id)
 		logrus.Debugf("parsed reference into %q", storeSpec+"@"+id)
 	} else if id == "" {
+		fmt.Println("Dan2", storeSpec+refname)
 		logrus.Debugf("parsed reference into %q", storeSpec+refname)
 	} else {
+		fmt.Println("Dan3", storeSpec+refname+"@"+id)
 		logrus.Debugf("parsed reference into %q", storeSpec+refname+"@"+id)
 	}
 	return newReference(storageTransport{store: store}, refname, id, name), nil
@@ -205,6 +209,7 @@ func (s storageTransport) GetStoreImage(store storage.Store, ref types.ImageRefe
 	if dref == nil {
 		if sref, ok := ref.(*storageReference); ok {
 			if sref.id != "" {
+				fmt.Println("Dan4 dref=nil", sref.id)
 				if img, err := store.Image(sref.id); err == nil {
 					return img, nil
 				}
@@ -212,6 +217,7 @@ func (s storageTransport) GetStoreImage(store storage.Store, ref types.ImageRefe
 		}
 		return nil, ErrInvalidReference
 	}
+	fmt.Println("Dan5 dref=", dref)
 	return store.Image(verboseName(dref))
 }
 
