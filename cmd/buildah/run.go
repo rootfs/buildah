@@ -29,7 +29,7 @@ var (
 			Usage: "add global flags for the container runtime",
 		},
 		cli.BoolFlag{
-			Name:  "tty",
+			Name:  "tty, t",
 			Usage: "allocate a pseudo-TTY in the container",
 		},
 		cli.StringSliceFlag{
@@ -39,12 +39,13 @@ var (
 	}
 	runDescription = "Runs a specified command using the container's root filesystem as a root\n   filesystem, using configuration settings inherited from the container's\n   image or as specified using previous calls to the config command"
 	runCommand     = cli.Command{
-		Name:        "run",
-		Usage:       "Run a command inside of the container",
-		Description: runDescription,
-		Flags:       runFlags,
-		Action:      runCmd,
-		ArgsUsage:   "CONTAINER-NAME-OR-ID COMMAND [ARGS [...]]",
+		Name:           "run",
+		Usage:          "Run a command inside of the container",
+		Description:    runDescription,
+		Flags:          runFlags,
+		Action:         runCmd,
+		ArgsUsage:      "CONTAINER-NAME-OR-ID COMMAND [ARGS [...]]",
+		SkipArgReorder: true,
 	}
 )
 

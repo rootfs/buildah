@@ -28,7 +28,7 @@ Adds global flags for the container runtime. To list the supported flags, please
 consult manpages of your selected container runtime (`runc` is the default
 runtime, the manpage to consult is `runc(8)`)
 
-**--tty**
+**--tty, -t**
 
 By default a pseudo-TTY is allocated only when buildah's standard input is
 attached to a pseudo-TTY.  Setting the `--tty` option to `true` will cause a

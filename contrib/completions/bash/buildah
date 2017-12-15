@@ -383,6 +383,7 @@ return 1
      local boolean_options="
      --help
      --tty
+     -t
      -h
   "
 
